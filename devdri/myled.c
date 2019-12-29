@@ -46,6 +46,20 @@ static ssize_t led_write(struct file* filp, const char* buf, size_t count,loff_t
 			b++;
 		}
 	}
+	else if(c == '4'){
+		int d = 0;
+		while(d <10){
+			gpio_base[7] = 1 << 25;
+			mdelay(100);
+			gpio_base[10] = 1 << 25;
+			mdelay(100);
+			gpio_base[7] = 1 << 25;
+			mdelay(100);
+			gpio_base[10] = 1 << 25;
+			mdelay(1000);
+			d++;
+		}
+	}
 	printk(KERN_INFO "receive %c\n",c);
 	return 1;
 }
