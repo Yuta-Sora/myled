@@ -1,3 +1,3 @@
-/home/pi/devdri/myled.ko
-/home/pi/devdri/myled.o
+/home/pi/GIT/myled/devdri/myled.ko
+/home/pi/GIT/myled/devdri/myled.o
 

@@ -1,1 +1,1 @@
-cmd_/home/pi/devdri/myled.ko := ld -r  -EL -T ./scripts/module-common.lds -T ./arch/arm/kernel/module.lds  --build-id  -o /home/pi/devdri/myled.ko /home/pi/devdri/myled.o /home/pi/devdri/myled.mod.o ;  true
+cmd_/home/pi/GIT/myled/devdri/myled.ko := ld -r  -EL -T ./scripts/module-common.lds -T ./arch/arm/kernel/module.lds  --build-id  -o /home/pi/GIT/myled/devdri/myled.ko /home/pi/GIT/myled/devdri/myled.o /home/pi/GIT/myled/devdri/myled.mod.o ;  true
