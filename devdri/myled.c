@@ -22,6 +22,15 @@ static ssize_t led_write(struct file* filp, const char* buf, size_t count,loff_t
 		gpio_base[10] = 1 << 25;
 	else if(c == '1')
 		gpio_base[7] = 1 << 25;
+	else if(c == '2'){
+		int a = 0;
+		while(a<10000000){
+			gpio_base[7] = 1 << 25;
+			gpio_base[10] = 1 << 25;
+			a++;
+		}
+	}
+
 	printk(KERN_INFO "receive %c\n",c);
 	return 1;
 }
