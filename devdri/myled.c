@@ -4,10 +4,21 @@
 #include <linux/device.h>
 #include <linux/uaccess.h>
 #include <linux/io.h>
+#include <linux/timer.h>
 MODULE_AUTHOR("Yuta Isobe");
 MODULE_DESCRIPTION("driver for LED control");
 MODULE_LICENSE("GPL");
 MODULE_VERSION("0.1");
+
+struct timer_list mytimer;
+
+#define MYTIMER_TIMEOUT_SECS 1
+
+static void mytimer_fn(struct timer_list *t){
+	int a1 = 0;
+	int a2 = 1;
+	a1 = a1 + a2;
+}
 
 static dev_t dev;
 static struct cdev cdv;
@@ -24,11 +35,25 @@ static ssize_t led_write(struct file* filp, const char* buf, size_t count,loff_t
 		gpio_base[7] = 1 << 25;
 	else if(c == '2'){
 		int a = 0;
-		while(a<10000000){
-			gpio_base[7] = 1 << 25;
-			gpio_base[10] = 1 << 25;
-			a++;
+		int b = 0;
+		int d = 0;
+		int e = 0;
+		while(b<10){
+			timer_setup(&mytimer, mytimer_fn, 0);
+			mytimer->expires = jiffies + 10*HZ;
+			add_timer(&mytimer);
+			a=d;
+			e = d%2;
+			if(d==0){
+				gpio_base[7] = 1 << 25;
+			}
+			else if(d==1){
+				gpio_base[10] = 1 << 25;
+			}
+			add_timer(&mytimer);
+			b++;
 		}
+		del_timer(&mytimer);
 	}
 
 	printk(KERN_INFO "receive %c\n",c);
@@ -80,6 +105,7 @@ static void __exit cleanup_mod(void)
 	device_destroy(cls, dev);
 	class_destroy(cls);
 	unregister_chrdev_region(dev, 1);
+	del_timer(&mytimer);
 	printk(KERN_INFO "%s is unloaded. major:%d\n",__FILE__,MAJOR(dev));
 }
 
