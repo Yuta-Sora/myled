@@ -16,11 +16,11 @@
    sudo mknod /dev/myled0 c 240 c  
    を実行（240は確認したメジャー番号に変更）  
 7. sudo chmod 666 /dev/myled0を実行  
-8. echo 1 > /dev/myled0  
-   echo 0 > /dev/myled0
-   echo 2 > /dev/myled0  
-   echo 3 > /dev/myled0  
-   echo 4 > /dev/myled0  
+8. echo 1 > /dev/myled0 ・・・　LED点灯  
+   echo 0 > /dev/myled0 ・・・　LED消灯  
+   echo 2 > /dev/myled0 ・・・　LED高速点滅（20回)  
+   echo 3 > /dev/myled0 ・・・　LED点滅（10回）  
+   echo 4 > /dev/myled0 ・・・　LEDパターン点滅（10回）  
 9. 使用後は  
    sudo rmmod myled  
    を実行しアンインストール
