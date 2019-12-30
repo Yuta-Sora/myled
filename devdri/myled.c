@@ -8,7 +8,7 @@
 MODULE_AUTHOR("Yuta Isobe");
 MODULE_DESCRIPTION("driver for LED control");
 MODULE_LICENSE("GPL");
-MODULE_VERSION("0.1");
+MODULE_VERSION("1.0");
 
 
 static dev_t dev;
